@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "minitalk.h": "c",
+        "signal.h": "c",
+        "sig_atomic_t.h": "c"
+    },
+    "makefile.configureOnOpen": true
+}
