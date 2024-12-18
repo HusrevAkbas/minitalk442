@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/09 14:54:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/21 12:40:38 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	int	size= 31;
-	int	num = 7;
+	char	*pointer;
+	int		size;
+	int		i;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!s)
+		return (0);
+	while (c >= 128)
+		c = c - 128;
+	i = 0;
+	size = ft_strlen(s);
+	pointer = (char *) s;
+	while (i <= size)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		if (pointer[i] == c)
+			return (&pointer[i]);
+		i++;
 	}
 	return (0);
 }

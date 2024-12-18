@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:57:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/03 15:58:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalnum(int c)
 {
-	int	size= 31;
-	int	num = 7;
-
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
-	{
-		printf("%i", (num >> size) & 1);
-		size--;
-	}
-	return (0);
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else
+		return (0);
 }
+/*
+#include <stdio.h>
+int	main(int argc, char *argv[])
+{
+	int	r;
+	if (argc > 1)
+	{
+		r = ft_isalnum('-');
+		printf("%d", r);
+	}
+}*/

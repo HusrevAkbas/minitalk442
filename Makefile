@@ -11,29 +11,34 @@ CLIENT := client
 
 all: ${NAME}
 	@-./${NAME}
+#@-./${CLIENT}
 
-${NAME}: ${OBJ} ${NAME}.c
-	@-cc -g ${CFLAGS} ${OBJ} ${NAME}.c -o ${NAME}
+${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c
+	@-cc -g ${CFLAGS} ${OBJ} ${NAME}.c -L ${LIBFT} -lft -o ${NAME}
+	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -L ${LIBFT} -lft -o ${CLIENT}
 
 ${OBJ}: ${SRC}
 	@- cc -g -c ${CFLAGS} ${SRC}
 
-#${LIBFTCHECK}:
-#	@- ${MAKE} -C ${LIBFT} bonus clean
-#	touch ${LIBFTCHECK}
+${LIBFTCHECK}:
+	@- ${MAKE} -C ${LIBFT} bonus clean
+	touch ${LIBFTCHECK}
 
 ${CLIENT}: ${OBJ} ${CLIENT}.c
 	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -o ${CLIENT}
 
+b : bonus
 bonus :
 
+c : clean
 clean:
 #@ ${MAKE} -C ${LIBFT} clean --- it s already cleaned after creating archive 
 	@- rm -f ${OBJ} checker.o push_swap.o
 
+f : fclean
 fclean: clean
 #	@ ${MAKE} -C ${LIBFT} fclean
-	rm -f ${NAME} ${LIBFTCHECK} ${BONUSNAME}
+	rm -f ${NAME} ${LIBFTCHECK} ${CLIENT}
 
 re: fclean all bonus
 

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/10/17 13:10:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/29 15:03:51 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif //BUFFER_SIZE
 
-int	main(void)
-{
-	int	size= 31;
-	int	num = 7;
+char	*get_next_line(int fd);
+char	*ft_strnjoin(char *dst, char *src, size_t size);
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
-	{
-		printf("%i", (num >> size) & 1);
-		size--;
-	}
-	return (0);
-}
+#endif // GET_NEXT_LINE_H

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:59:51 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/03 15:59:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
-
-int	main(void)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	int	size= 31;
-	int	num = 7;
+	unsigned int	i;
+	unsigned char	c1;
+	unsigned char	c2;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		c1 = s1[i];
+		c2 = s2[i];
+		if (c1 != c2)
+			return (c1 - c2);
+		i++;
 	}
 	return (0);
 }

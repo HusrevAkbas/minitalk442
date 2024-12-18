@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/06 15:23:31 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/06 15:23:38 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
-
-int	main(void)
+int	ft_isascii(int c)
 {
-	int	size= 31;
-	int	num = 7;
-
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
-	{
-		printf("%i", (num >> size) & 1);
-		size--;
-	}
-	return (0);
+	if (c < 0 || c > 127)
+		return (0);
+	return (1);
 }

@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/11 12:43:15 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/11 12:43:18 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	size= 31;
-	int	num = 7;
+	unsigned char	*str;
+	unsigned char	ch;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	ch = (unsigned char) c;
+	str = (unsigned char *) s;
+	while (n > 0)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		if (*str == ch)
+			return ((void *) str);
+		str++;
+		n--;
 	}
-	return (0);
+	return (NULL);
 }

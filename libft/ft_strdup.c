@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/13 14:01:00 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/21 12:40:55 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strdup(const char *s)
 {
-	int	size= 31;
-	int	num = 7;
+	char	*pointer;
+	size_t	i;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!s)
+		return (NULL);
+	pointer = (char *)malloc(ft_strlen(s) + 1);
+	if (pointer == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		pointer[i] = s[i];
+		i++;
 	}
-	return (0);
+	pointer[i] = '\0';
+	return (pointer);
 }

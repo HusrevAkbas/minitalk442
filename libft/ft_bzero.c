@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/09 14:35:54 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/21 12:37:35 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_bzero(void *s, size_t n)
 {
-	int	size= 31;
-	int	num = 7;
+	char	*p;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!s)
+		return ;
+	p = s;
+	while (n > 0)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		*p = '\0';
+		p++;
+		n--;
 	}
-	return (0);
 }

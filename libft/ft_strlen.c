@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:59:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/21 12:41:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlen(const char *str)
 {
-	int	size= 31;
-	int	num = 7;
+	size_t	length;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!str)
+		return (0);
+	length = 0;
+	while (str[length])
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		length++;
 	}
-	return (0);
+	return (length);
 }

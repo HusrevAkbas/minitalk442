@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/20 15:46:11 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/23 18:06:09 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_lstsize(t_list *lst)
 {
-	int	size= 31;
-	int	num = 7;
+	int	count;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (lst == NULL)
+		return (0);
+	count = 1;
+	while (lst->next)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		lst = lst->next;
+		count++;
 	}
-	return (0);
+	return (count);
 }

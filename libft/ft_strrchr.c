@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/09 14:54:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/21 12:42:45 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
-
-int	main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	size= 31;
-	int	num = 7;
+	char	*pointer;
+	char	*pointer_to_char;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!s)
+		return (0);
+	while (c >= 128)
+		c = c - 128;
+	pointer = (char *) s;
+	pointer_to_char = 0;
+	while (*pointer)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		if (*pointer == c)
+			pointer_to_char = pointer;
+		pointer++;
 	}
-	return (0);
+	if (*pointer == '\0' && c == 0)
+		return (pointer);
+	return (pointer_to_char);
 }

@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:53:35 by huakbas          ###   ########.fr       */
+/*   Created: 2024/10/17 13:24:03 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/29 15:04:10 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strnjoin(char *str1, char *str2, size_t size)
 {
-	int	size= 31;
-	int	num = 7;
+	char	*new;
+	size_t	i;
+	size_t	j;
+	size_t	dst_length;
 
-	kill(2823370, SIGUSR1);
-
-	while (0 <= size)
+	if (!str1)
+		return (NULL);
+	dst_length = ft_strlen(str1);
+	i = 0;
+	new = malloc(size + dst_length + 1);
+	if (new)
 	{
-		printf("%i", (num >> size) & 1);
-		size--;
+		while (str1[i])
+		{
+			new[i] = str1[i];
+			i++;
+		}
+		j = 0;
+		while (str2[j] && j < size)
+			new[i++] = str2[j++];
+		new[i] = 0;
 	}
-	return (0);
+	return (new);
 }
