@@ -13,9 +13,9 @@ all: ${NAME}
 	@-./${NAME}
 #@-./${CLIENT}
 
-${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c
-	@-cc -g ${CFLAGS} ${OBJ} ${NAME}.c -L ${LIBFT} -lft -o ${NAME}
+${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c ${CLIENT}.c
 	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -L ${LIBFT} -lft -o ${CLIENT}
+	@-cc -g ${CFLAGS} ${OBJ} ${NAME}.c -L ${LIBFT} -lft -o ${NAME}
 
 ${OBJ}: ${SRC}
 	@- cc -g -c ${CFLAGS} ${SRC}
@@ -37,7 +37,7 @@ clean:
 
 f : fclean
 fclean: clean
-#	@ ${MAKE} -C ${LIBFT} fclean
+	@ ${MAKE} -C ${LIBFT} fclean
 	rm -f ${NAME} ${LIBFTCHECK} ${CLIENT}
 
 re: fclean all bonus
