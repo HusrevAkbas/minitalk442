@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/19 13:30:26 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:46:59 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	main(int argc, char **argv)
 		size--;
 	}
 	kill(pid, SIGXFSZ);
+	kill(pid, SIGTERM);
 	return (0);
 }

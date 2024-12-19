@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/19 14:18:03 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:52:46 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	handler(int signum)
 	int	i;
 
 	signum = 1;
+	i = 0;
 	i = ft_strlen(string->str);
 	string->str[i] = '1';
 }
@@ -28,13 +29,23 @@ void	handler2(int signum)
 	int	i;
 
 	signum = 0;
+	i = 0;
 	i = ft_strlen(string->str);
 	string->str[i] = '0';
 }
+
 void	print(int signum)
 {
 	signum = 1;
 	ft_printf("%s\n", string->str);
+}
+
+void	exit_p(int signum)
+{
+	signum = 0;
+	free(string->str);
+	free(string);
+	exit(0);
 }
 
 int main(void)
@@ -44,6 +55,7 @@ int main(void)
 	t_sigaction	sa_usr1;
 	t_sigaction	sa_usr2;
 	t_sigaction	sa_print;
+	t_sigaction	sa_kill;
 	sigset_t	set;
 	string = malloc(sizeof(t_stringholder));
 	if (!string)
@@ -54,8 +66,7 @@ int main(void)
 		free(string);
 		return (0);
 	}
-	string->str[0] = 0;
-	ft_printf("%s\n", string->str);
+	ft_bzero(string->str, 1001);
 	string->i = 1;
 	string->is_long = 0;
 
@@ -66,6 +77,7 @@ int main(void)
 	pidchar = ft_itoa(pid);
 	write(1, pidchar, ft_strlen(pidchar));
 	write(1, "\n", 1);
+	free(pidchar);
 	sa_usr1.sa_flags = SA_RESTART;
 	sa_usr1.sa_handler = &handler;
 	sa_usr1.sa_mask = set;
@@ -81,12 +93,15 @@ int main(void)
 	sa_print.sa_mask = set;
 	sigaction(SIGXFSZ, &sa_print, NULL);
 	
+	sa_kill.sa_flags = SA_RESTART;
+	sa_kill.sa_handler = &exit_p;
+	sa_kill.sa_mask = set;
+	sigaction(SIGTERM, &sa_kill, NULL);
+	
 	while (1)
 	{
 		pause();
 	}
-	free(string->str);
-	free(string);
-	free(pidchar);
+	exit_p(1);
 	return (0);
 }
