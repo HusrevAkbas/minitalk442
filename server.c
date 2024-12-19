@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/19 14:52:46 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 17:58:53 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main(void)
 	if (!string->str)
 	{
 		free(string);
-		return (0);
+		return (EXIT_SUCCESS);
 	}
 	ft_bzero(string->str, 1001);
 	string->i = 1;
