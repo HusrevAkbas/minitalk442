@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/19 14:11:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:18:03 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@ int main(void)
 	t_sigaction	sa_print;
 	sigset_t	set;
 	string = malloc(sizeof(t_stringholder));
+	if (!string)
+		return (0);
 	string->str = malloc(1001);
+	if (!string->str)
+	{
+		free(string);
+		return (0);
+	}
+	string->str[0] = 0;
+	ft_printf("%s\n", string->str);
 	string->i = 1;
 	string->is_long = 0;
 
