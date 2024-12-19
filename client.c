@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 15:15:18 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 13:30:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(int argc, char **argv)
 	while (i < 10)
 	{
 		kill(pid, SIGUSR1);
-		usleep(500);
+		usleep(20);
 		kill(pid, SIGUSR2);
+		usleep(20);
 		i++;
 	}
 	while (0 <= size)
@@ -32,5 +33,6 @@ int	main(int argc, char **argv)
 		printf("%i", (num >> size) & 1);
 		size--;
 	}
+	kill(pid, SIGXFSZ);
 	return (0);
 }

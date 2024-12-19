@@ -24,9 +24,6 @@ ${LIBFTCHECK}:
 	@- ${MAKE} -C ${LIBFT} bonus clean
 	touch ${LIBFTCHECK}
 
-${CLIENT}: ${OBJ} ${CLIENT}.c
-	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -o ${CLIENT}
-
 b : bonus
 bonus :
 

@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/18 12:47:40 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:09:23 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 
-typedef struct sigaction t_sigaction;
+typedef struct sigaction	t_sigaction;
+typedef struct string
+{
+	int		i;
+	char	*str;
+	int		is_long;
+}	t_stringholder;
 
 #endif
