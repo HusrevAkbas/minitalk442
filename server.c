@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/19 17:58:53 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/20 15:16:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,42 @@
 
 t_stringholder	*string;
 
+void	print(int signum)
+{
+	signum = 0;
+	while (string->bin[signum])
+	{
+		if (signum % 8 == 0)
+			ft_printf("\n");
+		ft_printf("%c", string->bin[signum]);
+		signum++;
+	}
+	
+	ft_printf("%s\n", string->bin);
+}
+
 void	handler(int signum)
 {
-	int	i;
-
 	signum = 1;
-	i = 0;
-	i = ft_strlen(string->str);
-	string->str[i] = '1';
+	string->bin[string->i_bin] = '1';
+	string->i_bin++;
+	if (string->i_bin == 8)
+	{
+		string->i_bin = 0;
+		print(0);
+	}
 }
 
 void	handler2(int signum)
 {
-	int	i;
-
 	signum = 0;
-	i = 0;
-	i = ft_strlen(string->str);
-	string->str[i] = '0';
-}
-
-void	print(int signum)
-{
-	signum = 1;
-	ft_printf("%s\n", string->str);
+	string->bin[string->i_bin] = '0';
+	string->i_bin++;
+	if (string->i_bin == 8)
+	{
+		string->i_bin = 0;
+		print(0);
+	}
 }
 
 void	exit_p(int signum)
@@ -60,15 +72,17 @@ int main(void)
 	string = malloc(sizeof(t_stringholder));
 	if (!string)
 		return (0);
-	string->str = malloc(1001);
+	string->str = ft_calloc(1, 82);
 	if (!string->str)
 	{
 		free(string);
 		return (EXIT_SUCCESS);
 	}
-	ft_bzero(string->str, 1001);
-	string->i = 1;
+	ft_bzero(string->bin, 9);
+	string->i_str = 0;
+	string->i_bin = 0;
 	string->is_long = 0;
+	string->is_long_set = 0;
 
 	sigemptyset(&set);
 	sigaddset(&set, SIGUSR1);
@@ -96,7 +110,7 @@ int main(void)
 	sa_kill.sa_flags = SA_RESTART;
 	sa_kill.sa_handler = &exit_p;
 	sa_kill.sa_mask = set;
-	sigaction(SIGTERM, &sa_kill, NULL);
+	sigaction(SIGTSTP, &sa_kill, NULL);
 	
 	while (1)
 	{
