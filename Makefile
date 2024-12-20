@@ -3,7 +3,7 @@ CFLAGS := -Wall -Wextra -Werror
 LIBFT := libft
 LIBFTCHECK := libcheck
  
-SRC := utils.c
+SRC := utils.c ft_atoi_base.c
 OBJ := $(SRC:.c=.o)
 
 NAME := server

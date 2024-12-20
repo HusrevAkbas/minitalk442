@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:51:33 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/20 15:59:23 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/20 16:31:20 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,26 @@ static int	char_in_str(char *str, char c)
 	return (i);
 }
 
-static int	get_pow(int a, int p, char c, char *base)
-{
-	int	r;
-	int	i;
+// static int	get_pow(int a, int p, char c, char *base)
+// {
+// 	int	r;
+// 	int	i;
 
-	r = 1;
-	while (p > 0)
-	{
-		p--;
-		r *= a;
-	}
-	i = 0;
-	while (base[i])
-	{
-		if (base[i] == c)
-			break ;
-		i++;
-	}
-	return (r * i);
-}
+// 	r = 1;
+// 	while (p > 0)
+// 	{
+// 		p--;
+// 		r *= a;
+// 	}
+// 	i = 0;
+// 	while (base[i])
+// 	{
+// 		if (base[i] == c)
+// 			break ;
+// 		i++;
+// 	}
+// 	return (r * i);
+// }
 
 static int	check_chars(char *nbr, int *p)
 {
