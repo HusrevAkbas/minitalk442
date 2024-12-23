@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/20 16:46:24 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:52:17 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	send_msg(char *str, int pid)
 	i = 0;
 	while (str[i])
 	{
+		if (i % BUFF_SIZE == 0 && (int) ft_strlen(str) >= i + BUFF_SIZE)
+			char_to_bin('1', pid);
+		else if (i % BUFF_SIZE == 0)
+			char_to_bin('0', pid);
 		char_to_bin(str[i], pid);
 		i++;
 	}

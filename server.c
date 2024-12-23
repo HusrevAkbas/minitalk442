@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/23 13:00:42 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:11:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,37 @@
 
 t_stringholder	*string;
 
+void	exit_p(int signum)
+{
+	signum = 0;
+	free(string->str);
+	free(string);
+	exit(0);
+}
+
 void	print()
 {
-	if (ft_atoi_base(string->bin, "01") == 0)
+	unsigned char	*middle;
+
+	if (string->is_long_set == 0)
+	{
+		if (string->is_long)
+		{
+			middle = string->str;
+			string->str = ft_calloc(ft_strlen((char *)string->str) + BUFF_SIZE, sizeof(char));
+			if (!string->str)
+			{
+				free(middle);
+				exit_p(0);
+			}
+			ft_memcpy(string->str, middle, ft_strlen((char *)middle));
+			free(middle);
+		}
+		string->is_long = ft_atoi_base(string->bin, "01") - 48;
+		ft_printf("long: %i\n", string->is_long);
+		string->is_long_set = 1;
+	}
+	else if (ft_atoi_base(string->bin, "01") == 0)
 	{
 		string->str[string->i_str] = '\n';
 		ft_printf("%s", string->str);
@@ -52,14 +80,6 @@ void	handler2(int signum)
 		string->i_bin = 0;
 		print();
 	}
-}
-
-void	exit_p(int signum)
-{
-	signum = 0;
-	free(string->str);
-	free(string);
-	exit(0);
 }
 
 int main(void)
