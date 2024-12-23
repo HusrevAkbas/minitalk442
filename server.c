@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/20 16:47:24 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:00:42 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 t_stringholder	*string;
 
-void	print(int signum)
+void	print()
 {
-	signum = 0;
-	while (string->bin[signum])
+	if (ft_atoi_base(string->bin, "01") == 0)
 	{
-		if (signum % 8 == 0)
-		{
-			if (ft_atoi_base(string->bin, "01") == 0)
-				ft_printf("\n");
-			else
-				ft_printf("%c", ft_atoi_base(string->bin, "01"));
-		}
-		signum++;
+		string->str[string->i_str] = '\n';
+		ft_printf("%s", string->str);
+		string->i_str = 0;
+		ft_bzero(string->str, BUFF_SIZE + 1);
+	}
+	else
+	{
+		string->str[string->i_str] = ft_atoi_base(string->bin, "01");
+		string->i_str++;
 	}
 }
 
@@ -38,7 +38,7 @@ void	handler(int signum)
 	if (string->i_bin == 8)
 	{
 		string->i_bin = 0;
-		print(0);
+		print();
 	}
 }
 
@@ -50,7 +50,7 @@ void	handler2(int signum)
 	if (string->i_bin == 8)
 	{
 		string->i_bin = 0;
-		print(0);
+		print();
 	}
 }
 

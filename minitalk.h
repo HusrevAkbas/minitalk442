@@ -6,13 +6,16 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/20 16:30:11 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/23 12:51:33 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 # define _GNU_SOURCE
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 20
+# endif //BUFF_SIZE
 # include "libft/libft.h"
 # include <signal.h>
 # include <stdio.h>
