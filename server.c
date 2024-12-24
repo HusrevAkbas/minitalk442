@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 16:16:29 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:53:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	set_string(t_stringholder *node)
 {
 	if (ft_atoi_base(node->bin, "01") == 0)
 	{
-		ft_printf("%s\n", node->str);
-		//kill(node->pid_sender, SIGUSR1);
+		write(1, node->str, ft_strlen((char *)node->str));
+		write(1, "\n", 1);
+		node->is_done = 1;
 		ft_bzero(node->str, BUFF_SIZE + 1);
 		node->i_str = 0;
+		usleep(5000);
 		return ;
 	}
 	node->str[node->i_str] = ft_atoi_base(node->bin, "01");
@@ -120,20 +122,23 @@ int main(void)
 
 	sa_usr1.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
 	//sa_usr1.sa_flags = SA_RESTART;
-	sa_usr1.sa_mask = set;
+	//sa_usr1.sa_mask = set;
 	sa_usr1.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa_usr1, NULL) == -1)
 		exit_p(3);
 	
 	sa_usr2.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
 	//sa_usr2.sa_flags = SA_RESTART;
-	sa_usr2.sa_mask = set;
+	//sa_usr2.sa_mask = set;
 	sa_usr2.sa_sigaction = &handler2;
 	if (sigaction(SIGUSR2, &sa_usr2, NULL))
 		exit_p(3);
 
 	while (1)	//WAIT FOR SIGNALS
+	{
 		pause();
+		//send_feedback(list);
+	}
 	exit_p(1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 16:15:00 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:55:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		usleep(100);
+		usleep(200);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
@@ -57,8 +57,12 @@ int	main(int argc, char **argv)
 {
 	int			pid;
 	t_sigaction	sa_feedback;
+	sigset_t	set;
 
+	sigemptyset(&set);
+	sigaddset(&set, SIGUSR1);
 	sa_feedback.sa_flags = SA_RESTART;
+	sa_feedback.sa_mask = set;
 	sa_feedback.sa_sigaction = &feedback_handler;
 	if (sigaction(SIGUSR1, &sa_feedback, NULL) == -1)
 		return (0);
@@ -71,8 +75,9 @@ int	main(int argc, char **argv)
 	ft_printf("%s | pid: %i\n", argv[2], getpid());
 	while (1)
 	{
-		sleep(2);
+		sleep(3);
 		send_msg(argv[2], pid);
+		ft_printf("message sent: %s\n", argv[2]);
 	}
 	return (0);
 }

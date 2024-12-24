@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 14:32:14 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:51:22 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_stringholder	*init_string(int pid_src)
 	string->i_str = 0;
 	string->is_long = 0;
 	string->is_long_set = 0;
+	string->is_done = 0;
 	return (string);
 }
 
@@ -62,5 +63,18 @@ void	printlist(t_stringholder *head)
 	{
 		ft_printf("pid: %i\n", head->pid_sender);
 		head = head->next;
+	}
+}
+
+void	send_feedback(t_stringholder *list)
+{
+	while (list)
+	{
+		if (list->is_done == 1)
+		{
+			kill(list->pid_sender, SIGUSR1);
+			list->is_done = 0;
+		}
+		list = list->next;
 	}
 }

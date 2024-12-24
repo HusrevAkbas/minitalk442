@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 15:52:03 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:42:20 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct string
 	int				pid_sender;
 	unsigned char	*str;
 	char			bin[9];
+	int				is_done;
 	int				is_long;
 	int				is_long_set;
 	struct string	*next;
@@ -41,6 +42,7 @@ t_stringholder	*find_node(t_stringholder *head, int pid_src);
 int				ft_atoi_base(char *nbr, char *base);
 void			exit_p(int code);
 t_stringholder	*init_string(int pid);
+void			send_feedback(t_stringholder *list);
 
 void	printlist(t_stringholder *head);
 #endif
