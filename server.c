@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 15:11:26 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:16:29 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	set_string(t_stringholder *node)
 	if (ft_atoi_base(node->bin, "01") == 0)
 	{
 		ft_printf("%s\n", node->str);
+		//kill(node->pid_sender, SIGUSR1);
+		ft_bzero(node->str, BUFF_SIZE + 1);
+		node->i_str = 0;
 		return ;
 	}
 	node->str[node->i_str] = ft_atoi_base(node->bin, "01");
@@ -48,6 +51,8 @@ void	handler(int signum, siginfo_t *info, void *data)
 	if (!node)
 	{
 		node = init_string(info->si_pid);
+		if (!node)
+			exit_p(0);
 		last = find_last(list);
 		last->next = node;
 	}
