@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 13:25:16 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:40:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	main(int argc, char **argv)
 	pid = ft_atoi(argv[1]);
 	if (argc < 3)
 	{
-		ft_printf("You have to give a process id and a message to send.\n Only one message at a time!!\n");
+		ft_printf("You have to give a process id and a message to send.\n");
 		return (0);
 	}
-	ft_printf("%s\n", argv[2]);
+	ft_printf("%s | pid: %i\n", argv[2], getpid());
 	send_msg(argv[2], pid);
 	return (0);
 }

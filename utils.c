@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 13:19:28 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:32:14 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ t_stringholder	*find_last(t_stringholder *head)
 	while (head->next)
 		head = head->next;
 	return (head);
+}
+
+void	printlist(t_stringholder *head)
+{
+	while (head)
+	{
+		ft_printf("pid: %i\n", head->pid_sender);
+		head = head->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 13:15:39 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:32:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int				ft_atoi_base(char *nbr, char *base);
 void			exit_p(int code);
 t_stringholder	*init_string(int pid);
 
+void	printlist(t_stringholder *head);
 #endif

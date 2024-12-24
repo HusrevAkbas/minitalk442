@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 13:28:06 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:01:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,30 @@ void	exit_p(int code)
 
 void	set_string(t_stringholder *node)
 {
-	ft_printf("%c",ft_atoi_base(node->bin, "01"));
-	ft_printf("%i\n", node->pid_sender);
-	return ;
+	if (ft_atoi_base(node->bin, "01") == 0)
+	{
+		printlist(list);
+		ft_printf("%s\n", node->str);
+		ft_bzero(node->str, BUFF_SIZE + 1);
+		node->i_str = 0;
+		return ;
+	}
+	node->str[node->i_str] = ft_atoi_base(node->bin, "01");
+	node->i_str++;
 }
 
-void	handler(int signum, siginfo_t *si, void *data)
+void	handler(int signum, siginfo_t *info, void *data)
 {
 	t_stringholder	*node;
 	t_stringholder	*last;
 
+ft_printf("h1 pid  %i  \n", info->si_pid);
 	if (!list)
-		list = init_string(si->si_pid);
-	node = find_node(list, si->si_pid);
+		list = init_string(info->si_pid);
+	node = find_node(list, info->si_pid);
 	if (!node)
 	{
-		node = init_string(si->si_pid);
+		node = init_string(info->si_pid);
 		last = find_last(list);
 		last->next = node;
 	}
@@ -58,21 +66,22 @@ void	handler(int signum, siginfo_t *si, void *data)
 	}
 }
 
-void	handler2(int signum, siginfo_t *si, void *data)
+void	handler2(int signum, siginfo_t *info, void *data)
 {
 	t_stringholder	*node;
 	t_stringholder	*last;
 
+ft_printf("h2 pid  %i  \n", info->si_pid);
 	if (!list)
 	{
-		list = init_string(si->si_pid);
+		list = init_string(info->si_pid);
 		if (!list)
 			exit_p(0);
 	}
-	node = find_node(list, si->si_pid);
+	node = find_node(list, info->si_pid);
 	if (!node)
 	{
-		node = init_string(si->si_pid);
+		node = init_string(info->si_pid);
 		if (!node)
 			exit_p(0);
 		last = find_last(list);
@@ -109,17 +118,19 @@ int main(void)
 	write(1, "\n", 1);
 	free(pidchar);
 
-	//sa_usr1.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
-	sa_usr1.sa_flags = SA_RESTART;
-	sa_usr1.sa_sigaction = &handler;
+	sa_usr1.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
+	//sa_usr1.sa_flags = SA_RESTART;
 	sa_usr1.sa_mask = set;
-	sigaction(SIGUSR1, &sa_usr1, NULL);
+	sa_usr1.sa_sigaction = &handler;
+	if (sigaction(SIGUSR1, &sa_usr1, NULL) == -1)
+		exit_p(3);
 	
-	//sa_usr2.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
-	sa_usr2.sa_flags = SA_RESTART;
-	sa_usr2.sa_sigaction = &handler2;
+	sa_usr2.sa_flags = SA_SIGINFO;	//SIGACTION HANDELS USR1
+	//sa_usr2.sa_flags = SA_RESTART;
 	sa_usr2.sa_mask = set;
-	sigaction(SIGUSR2, &sa_usr2, NULL);
+	sa_usr2.sa_sigaction = &handler2;
+	if (sigaction(SIGUSR2, &sa_usr2, NULL))
+		exit_p(3);
 
 	while (1)	//WAIT FOR SIGNALS
 		pause();
