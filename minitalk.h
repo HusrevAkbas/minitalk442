@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 16:42:20 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 18:41:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct string
 	int				is_done;
 	int				is_long;
 	int				is_long_set;
-	struct string	*next;
 }	t_stringholder;
 
 t_stringholder	*find_last(t_stringholder *head);
