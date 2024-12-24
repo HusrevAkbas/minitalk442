@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 18:55:17 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:12:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,12 @@ int	main(int argc, char **argv)
 	}
 	pid = ft_atoi(argv[1]);
 	ft_printf("%s | pid: %i\n", argv[2], getpid());
-	send_msg(argv[2], pid);
+	while (1)
+	{
+		send_msg(argv[2], pid);
+		pause();
+		sleep(7);
+	}
 	sleep(1);
 	return (0);
 }
