@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/23 13:52:17 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 13:25:16 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	char_to_bin(char c, int pid)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(20);
+		usleep(200);
 		i--;
 	}
 }
@@ -56,7 +56,5 @@ int	main(int argc, char **argv)
 	}
 	ft_printf("%s\n", argv[2]);
 	send_msg(argv[2], pid);
-	//kill(pid, SIGXFSZ);
-	//kill(pid, SIGTERM);
 	return (0);
 }
