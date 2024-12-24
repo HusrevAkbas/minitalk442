@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 18:41:54 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:49:04 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINITALK_H
 # define _GNU_SOURCE
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 1000
+#  define BUFF_SIZE 80
 # endif //BUFF_SIZE
 # include "libft/libft.h"
 # include <signal.h>
@@ -36,8 +36,6 @@ typedef struct string
 	int				is_long_set;
 }	t_stringholder;
 
-t_stringholder	*find_last(t_stringholder *head);
-t_stringholder	*find_node(t_stringholder *head, int pid_src);
 int				ft_atoi_base(char *nbr, char *base);
 void			exit_p(int code);
 t_stringholder	*init_string(int pid);

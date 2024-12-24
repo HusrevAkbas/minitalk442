@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 18:59:32 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 19:46:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,43 @@ void	exit_p(int code)
 
 void	set_string(t_stringholder *strholder)
 {
-	if (ft_atoi_base(strholder->bin, "01") == 0)
+	unsigned char	*middle;
+
+	if (strholder->is_long_set == 0 && ft_atoi_base(strholder->bin, "01") != 0)
 	{
+		strholder->is_long = ft_atoi_base(strholder->bin, "01") - 48;
+		if (strholder->is_long == 1)
+		{
+			middle = strholder->str;
+			strholder->str = ft_calloc(ft_strlen((char *)middle) + BUFF_SIZE, 1);
+			ft_memcpy(strholder->str, middle, ft_strlen((char *)middle));
+		}
+		ft_printf("islong: %i\n", strholder->is_long);
+		strholder->is_long_set = 1;
+	}
+	else if (ft_atoi_base(strholder->bin, "01") == 0)
+	{
+		if (!ft_strncmp((char *)strholder->str, "sudoexit", 8))
+			exit_p(22);
 		write(1, strholder->str, ft_strlen((char *)strholder->str));
 		write(1, "\n", 1);
 		strholder->is_done = 1;
 		ft_bzero(strholder->str, BUFF_SIZE + 1);
 		strholder->i_str = 0;
+		strholder->is_long_set = 0;
 		return ;
 	}
-	strholder->str[strholder->i_str] = ft_atoi_base(strholder->bin, "01");
-	strholder->i_str++;
+	else
+	{
+		strholder->str[strholder->i_str] = ft_atoi_base(strholder->bin, "01");
+		strholder->i_str++;
+		if (strholder->i_str % BUFF_SIZE == 0)
+			strholder->is_long_set = 0;
+	}
 }
 
 void	handler(int signum, siginfo_t *info, void *data)
 {
-	if (!strholder)
-	{
-		strholder = init_string(info->si_pid);
-		if (!strholder)
-			exit_p(2);
-	}
 	strholder->pid_sender = info->si_pid;
 	(void) data;
 	(void) signum;
@@ -63,12 +79,6 @@ void	handler(int signum, siginfo_t *info, void *data)
 
 void	handler2(int signum, siginfo_t *info, void *data)
 {
-	if (!strholder)
-	{
-		strholder = init_string(info->si_pid);
-		if (!strholder)
-			exit_p(2);
-	}
 	(void) data;
 	(void) signum;
 	strholder->pid_sender = info->si_pid;
@@ -89,7 +99,9 @@ int main(void)
 	t_sigaction	sa_usr2;
 	sigset_t	set;
 
-	strholder = NULL;
+	strholder = init_string(-1);
+	if (!strholder)
+		exit_p(1);
 
 	sigemptyset(&set);	//USE SIGSET TO MASK SIGNALS
 	sigaddset(&set, SIGUSR1);
