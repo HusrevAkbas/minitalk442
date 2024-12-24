@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 15:01:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:11:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	set_string(t_stringholder *node)
 {
 	if (ft_atoi_base(node->bin, "01") == 0)
 	{
-		printlist(list);
 		ft_printf("%s\n", node->str);
-		ft_bzero(node->str, BUFF_SIZE + 1);
-		node->i_str = 0;
 		return ;
 	}
 	node->str[node->i_str] = ft_atoi_base(node->bin, "01");
@@ -45,7 +42,6 @@ void	handler(int signum, siginfo_t *info, void *data)
 	t_stringholder	*node;
 	t_stringholder	*last;
 
-ft_printf("h1 pid  %i  \n", info->si_pid);
 	if (!list)
 		list = init_string(info->si_pid);
 	node = find_node(list, info->si_pid);
@@ -57,7 +53,7 @@ ft_printf("h1 pid  %i  \n", info->si_pid);
 	}
 	(void) data;
 	(void) signum;
-	node->bin[list->i_bin] = '1';
+	node->bin[node->i_bin] = '1';
 	node->i_bin++;
 	if (node->i_bin == 8)
 	{
@@ -71,7 +67,6 @@ void	handler2(int signum, siginfo_t *info, void *data)
 	t_stringholder	*node;
 	t_stringholder	*last;
 
-ft_printf("h2 pid  %i  \n", info->si_pid);
 	if (!list)
 	{
 		list = init_string(info->si_pid);
@@ -89,7 +84,7 @@ ft_printf("h2 pid  %i  \n", info->si_pid);
 	}
 	(void) data;
 	(void) signum;
-	node->bin[list->i_bin] = '0';
+	node->bin[node->i_bin] = '0';
 	node->i_bin++;
 	if (node->i_bin == 8)
 	{

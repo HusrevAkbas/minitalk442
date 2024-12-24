@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 14:40:26 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:09:31 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
+		usleep(200);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(200);
 		i--;
 	}
 }
