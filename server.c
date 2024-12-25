@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/24 19:46:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/25 10:49:29 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	exit_p(int code)
 {
 	if (strholder)
 	{
-		if (strholder->str)
-			free(strholder->str);
+		free(strholder->str);
 		free(strholder);
 	}
 	ft_printf("Exit code: %i\n", code);
@@ -35,21 +34,25 @@ void	set_string(t_stringholder *strholder)
 		strholder->is_long = ft_atoi_base(strholder->bin, "01") - 48;
 		if (strholder->is_long == 1)
 		{
+			strholder->size += BUFF_SIZE;
 			middle = strholder->str;
-			strholder->str = ft_calloc(ft_strlen((char *)middle) + BUFF_SIZE, 1);
+			strholder->str = ft_calloc(strholder->size, 1);
+			if (!strholder->str)
+				exit_p(EXIT_FAILURE);
 			ft_memcpy(strholder->str, middle, ft_strlen((char *)middle));
 		}
-		ft_printf("islong: %i\n", strholder->is_long);
 		strholder->is_long_set = 1;
 	}
 	else if (ft_atoi_base(strholder->bin, "01") == 0)
 	{
 		if (!ft_strncmp((char *)strholder->str, "sudoexit", 8))
-			exit_p(22);
+			exit_p(0);
 		write(1, strholder->str, ft_strlen((char *)strholder->str));
 		write(1, "\n", 1);
 		strholder->is_done = 1;
-		ft_bzero(strholder->str, BUFF_SIZE + 1);
+		free(strholder->str);
+		strholder->size = BUFF_SIZE + 1;
+		strholder->str = ft_calloc(strholder->size, 1);
 		strholder->i_str = 0;
 		strholder->is_long_set = 0;
 		return ;
@@ -130,6 +133,6 @@ int main(void)
 		pause();
 		send_feedback(strholder);
 	}
-	exit_p(1);
+	exit_p(0);
 	return (0);
 }
