@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/25 10:47:07 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/27 15:49:28 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ typedef struct string
 
 int				ft_atoi_base(char *nbr, char *base);
 void			exit_p(int code);
-t_stringholder	*extend_str(t_stringholder *strholder);
+void			extend_str(t_stringholder **strholder);
 t_stringholder	*init_string(int pid);
+void			print_pid();
+void			print_result(t_stringholder **strholder);
 void			send_feedback(t_stringholder *list);
+void			set_sa(t_sigaction *sa1, t_sigaction *sa2, sigset_t *set);
 
 #endif

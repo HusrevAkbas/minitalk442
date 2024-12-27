@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/25 10:34:30 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/27 15:45:50 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	feedback_handler(int signum, siginfo_t *info, void *data)
 {
-	static int	i = 0;
 	(void) signum;
 	(void) info;
 	(void) data;
-	i++;
-	ft_printf("%s%i\n", "message printed: ", i);
+	ft_printf("%s\n", "Message printed!");
 }
 
 void	char_to_bin(char c, int pid)
@@ -29,7 +27,7 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		usleep(100);
+		usleep(300);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
@@ -74,13 +72,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	pid = ft_atoi(argv[1]);
-	//ft_printf("%s | pid: %i\n", argv[2], getpid());
-	while (1)
-	{
-		send_msg(argv[2], pid);
-		pause();
-		sleep(7);
-	}
-	sleep(1);
+	send_msg(argv[2], pid);
+	pause();
 	return (0);
 }
