@@ -40,7 +40,7 @@ fclean: clean
 re: fclean all bonus
 
 val: all
-	@valgrind -s --leak-check=yes --show-leak-kinds=all --track-origins=yes ./${NAME}
+	@valgrind --leak-check=yes --show-leak-kinds=all ./${NAME}
 
 fun: all
 	@funcheck ${NAME}

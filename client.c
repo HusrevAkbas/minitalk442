@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/30 13:23:45 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/30 15:21:38 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	feedback_handler(int signum, siginfo_t *info, void *data)
 	(void) signum;
 	(void) info;
 	(void) data;
-	ft_printf("%s\n", "Message reveived by server!");
+	write(1, "Message reveived by server!", 28);
+	exit(0);
 }
 
 void	char_to_bin(char c, int pid)
@@ -27,7 +28,7 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		usleep(300);
+		usleep(50);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
@@ -73,6 +74,6 @@ int	main(int argc, char **argv)
 	}
 	pid = ft_atoi(argv[1]);
 	send_msg(argv[2], pid);
-	pause();
+	sleep(5);
 	return (0);
 }
