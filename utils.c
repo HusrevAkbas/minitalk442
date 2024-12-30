@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/27 15:48:36 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/30 11:48:46 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	extend_str(t_stringholder **strholder)
 	if ((*strholder)->is_long == 1)
 	{
 		middle = (*strholder)->str;
-		(*strholder)->str = ft_calloc(ft_strlen((char *)middle) + BUFF_SIZE, 1);
+		(*strholder)->size += BUFF_SIZE;
+		(*strholder)->str = ft_calloc((*strholder)->size, 1);
 		if (!(*strholder)->str)
 			return ;
 		ft_memmove((*strholder)->str, middle, ft_strlen((char *)middle));
