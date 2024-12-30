@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/27 15:45:50 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/30 13:23:45 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	feedback_handler(int signum, siginfo_t *info, void *data)
 	(void) signum;
 	(void) info;
 	(void) data;
-	ft_printf("%s\n", "Message printed!");
+	ft_printf("%s\n", "Message reveived by server!");
 }
 
 void	char_to_bin(char c, int pid)
