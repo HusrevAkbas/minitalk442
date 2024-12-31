@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 13:43:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:00:51 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	handler(int signum, siginfo_t *info, void *data)
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	t_sigaction	sa_usr1;
 	sigset_t	set;

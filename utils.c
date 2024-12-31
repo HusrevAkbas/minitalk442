@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 13:43:58 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:01:14 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	print_result(t_stringholder **strholder)
 	(*strholder)->is_long_set = 0;
 }
 
-void	print_pid()
+void	print_pid(void)
 {
 	int			pid;
 	char		*pidchar;
