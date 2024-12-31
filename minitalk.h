@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/30 15:30:04 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 13:18:50 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ t_stringholder	*init_string(int pid);
 void			print_pid();
 void			print_result(t_stringholder **strholder);
 void			send_feedback(t_stringholder *list);
-void			set_sa(t_sigaction *sa1, t_sigaction *sa2, sigset_t *set);
+void			set_sa(t_sigaction *sa1, sigset_t *set);
 
 #endif

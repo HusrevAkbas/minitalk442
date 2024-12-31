@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/30 13:36:39 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 13:21:33 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,10 @@ void	handler(int signum, siginfo_t *info, void *data)
 	(void) data;
 	(void) signum;
 	g_strholder->pid_sender = info->si_pid;
-	g_strholder->bin[g_strholder->i_bin] = '1';
-	g_strholder->i_bin++;
-	if (g_strholder->i_bin == 8)
-	{
-		g_strholder->i_bin = 0;
-		set_string(g_strholder);
-	}
-}
-
-void	handler2(int signum, siginfo_t *info, void *data)
-{
-	(void) data;
-	(void) signum;
-	g_strholder->pid_sender = info->si_pid;
-	g_strholder->bin[g_strholder->i_bin] = '0';
+	if (signum == SIGUSR1)
+		g_strholder->bin[g_strholder->i_bin] = '1';
+	else
+		g_strholder->bin[g_strholder->i_bin] = '0';
 	g_strholder->i_bin++;
 	if (g_strholder->i_bin == 8)
 	{
@@ -85,19 +74,17 @@ void	handler2(int signum, siginfo_t *info, void *data)
 int main(void)
 {
 	t_sigaction	sa_usr1;
-	t_sigaction	sa_usr2;
 	sigset_t	set;
 
 	g_strholder = init_string(-1);
 	if (!g_strholder)
 		exit_p(1);
 	print_pid();
-	set_sa(&sa_usr1, &sa_usr2, &set);
+	set_sa(&sa_usr1, &set);
 	sa_usr1.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa_usr1, NULL) == -1)
 		exit_p(3);
-	sa_usr2.sa_sigaction = &handler2;
-	if (sigaction(SIGUSR2, &sa_usr2, NULL))
+	if (sigaction(SIGUSR2, &sa_usr1, NULL) == -1)
 		exit_p(3);
 	while (1)
 	{

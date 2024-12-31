@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:51:33 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/27 15:36:50 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 13:19:10 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ int	ft_atoi_base(char *nbr, char *base)
 	return (is_n * res);
 }
 
-void	set_sa(t_sigaction *sa1, t_sigaction *sa2, sigset_t *set)
+void	set_sa(t_sigaction *sa1, sigset_t *set)
 {
 	(*sa1).sa_flags = SA_SIGINFO;
-	(*sa2).sa_flags = SA_SIGINFO;
 	sigemptyset(set);
 	sigaddset(set, SIGUSR1);
 	sigaddset(set, SIGUSR2);
 	(*sa1).sa_mask = *set;
-	(*sa2).sa_mask = *set;
 }

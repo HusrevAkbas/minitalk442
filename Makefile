@@ -11,7 +11,7 @@ CLIENT := client
 
 all: ${NAME}
 	@-./${NAME}
-#@-./${CLIENT}
+#	@-./${CLIENT}
 
 ${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c ${CLIENT}.c
 	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -L ${LIBFT} -lft -o ${CLIENT}
@@ -40,7 +40,7 @@ fclean: clean
 re: fclean all bonus
 
 val: all
-	@valgrind --leak-check=yes --show-leak-kinds=all ./${NAME}
+	@valgrind -q --vgdb-error=0 --xml=yes --leak-check=yes --show-leak-kinds=all ./${NAME}
 
 fun: all
 	@funcheck ${NAME}
