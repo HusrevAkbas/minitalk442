@@ -10,7 +10,7 @@ NAME := server
 CLIENT := client
 
 all: ${NAME}
-	@-./${NAME}
+#	@-./${NAME}
 #	@-./${CLIENT}
 
 ${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c ${CLIENT}.c
@@ -40,7 +40,7 @@ fclean: clean
 re: fclean all bonus
 
 val: all
-	@valgrind -q --vgdb-error=0 --xml=yes --leak-check=yes --show-leak-kinds=all ./${NAME}
+	@valgrind --leak-check=full --show-leak-kinds=all ./${NAME}
 
 fun: all
 	@funcheck ${NAME}

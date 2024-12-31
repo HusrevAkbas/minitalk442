@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/30 11:48:46 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 13:43:58 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,21 @@ t_stringholder	*init_string(int pid_src)
 	return (string);
 }
 
-void	send_feedback(t_stringholder *list)
+void	set_sa(t_sigaction *sa1, sigset_t *set)
 {
-	if (list->is_done == 1)
-	{
-		kill(list->pid_sender, SIGUSR1);
-		list->is_done = 0;
-	}
+	(*sa1).sa_flags = SA_SIGINFO;
+	sigemptyset(set);
+	sigaddset(set, SIGUSR1);
+	sigaddset(set, SIGUSR2);
+	(*sa1).sa_mask = *set;
 }
 
 void	extend_str(t_stringholder **strholder)
 {
 	unsigned char	*middle;
 
+	if (!strholder || !(*strholder))
+		return ;
 	(*strholder)->is_long = ft_atoi_base((*strholder)->bin, "01") - 48;
 	if ((*strholder)->is_long == 1)
 	{

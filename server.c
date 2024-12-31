@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 13:21:33 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 13:43:37 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ t_stringholder	*g_strholder;
 
 void	exit_p(int code)
 {
-	if (g_strholder)
-	{
+	if (g_strholder->str)
 		free(g_strholder->str);
-		free(g_strholder);
-	}
+	free(g_strholder);
 	ft_printf("Exit code: %i\n", code);
 	exit(code);
 }
@@ -89,7 +87,11 @@ int main(void)
 	while (1)
 	{
 		pause();
-		send_feedback(g_strholder);
+		if (g_strholder->is_done == 1)
+		{
+			kill(g_strholder->pid_sender, SIGUSR1);
+			g_strholder->is_done = 0;
+		}
 	}
 	exit_p(0);
 	return (0);
