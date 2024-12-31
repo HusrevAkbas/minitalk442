@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 13:43:08 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:55:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	feedback_handler(int signum, siginfo_t *info, void *data)
 	(void) signum;
 	(void) info;
 	(void) data;
-	write(1, "Message reveived by server!", 28);
+	write(1, "Message received by server!", 28);
 	exit(0);
 }
 
@@ -28,7 +28,7 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		usleep(50);
+		usleep(65);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
