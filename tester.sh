@@ -7,33 +7,30 @@ EXIT=001100000110010101111000011010010111010000000000 #exit
 MAX=48
 i=0
 #send word
-
+echo "sudo"
 while [ $i -lt $MAX ]
 do
-	sleep 0.00001
+	sleep 0.0000005
 	if [ ${WORD:i:1} -eq 1 ]
 	then
 		pkill $S1 $PID
-		echo "$S1 $PID"
 	else
 		pkill $S2 $PID
-		echo "$S2 $PID"
 	fi
 	true $(( i=i+1 ))
 done
 #send exit
-sleep 5
+sleep 2
 i=0
+echo "exit"
 while [ $i -lt $MAX ]
 do
-	sleep 0.00001
+	sleep 0.0000005
 	if [ ${EXIT:i:1} -eq 1 ]
 	then
 		pkill $S1 $PID
-		echo "$S1 $PID"
 	else
 		pkill $S2 $PID
-		echo "$S2 $PID"
 	fi
 	true $(( i=i+1 ))
 done
