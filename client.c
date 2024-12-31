@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 15:55:26 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 17:29:40 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc != 3)
 	{
-		ft_printf("use program lske this:\n./client <PROCESS ID> <MESSAGE>");
+		ft_printf("use program like this:\n./client <PROCESS ID> <MESSAGE>");
 		return (0);
 	}
 	pid = ft_atoi(argv[1]);

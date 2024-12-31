@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 15:54:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/31 17:29:18 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "libft/libft.h"
 # include <signal.h>
 # include <stdio.h>
-//#include <unistd.h>
 # include <stdlib.h>
 # include <sys/wait.h>
 
