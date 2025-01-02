@@ -1,7 +1,7 @@
 CFLAGS := -Wall -Wextra -Werror
 
 LIBFT := libft
-LIBFTCHECK := libcheck
+LIBFTCHECK := ${LIBFT}/libft.a
  
 SRC := utils.c ft_atoi_base.c
 OBJ := $(SRC:.c=.o)
@@ -10,8 +10,6 @@ NAME := server
 CLIENT := client
 
 all: ${NAME}
-#	@-./${NAME}
-#	@-./${CLIENT}
 
 ${NAME}: ${OBJ} ${LIBFTCHECK} ${NAME}.c ${CLIENT}.c
 	@-cc -g ${CFLAGS} ${OBJ} ${CLIENT}.c -L ${LIBFT} -lft -o ${CLIENT}
@@ -22,14 +20,13 @@ ${OBJ}: ${SRC}
 
 ${LIBFTCHECK}:
 	@- ${MAKE} -C ${LIBFT} bonus clean
-	touch ${LIBFTCHECK}
 
 b : bonus
 bonus :
 
 c : clean
 clean:
-#@ ${MAKE} -C ${LIBFT} clean --- it s already cleaned after creating archive 
+#@ ${MAKE} -C ${LIBFT} clean --- it s already cleaned after creating archive
 	@- rm -f ${OBJ} checker.o push_swap.o
 
 f : fclean
