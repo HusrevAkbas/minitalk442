@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 15:01:14 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/09 16:34:40 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	extend_str(t_stringholder **strholder)
 		if (!(*strholder)->str)
 			return ;
 		ft_memmove((*strholder)->str, middle, ft_strlen((char *)middle));
+		free(middle);
 	}
 	(*strholder)->is_long_set = 1;
 }

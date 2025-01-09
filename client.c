@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 17:29:40 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/09 16:48:05 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 
 	sigemptyset(&set);
 	sigaddset(&set, SIGUSR1);
-	sa_feedback.sa_flags = SA_RESTART;
+	sa_feedback.sa_flags = SA_SIGINFO;
 	sa_feedback.sa_mask = set;
 	sa_feedback.sa_sigaction = &feedback_handler;
 	if (sigaction(SIGUSR1, &sa_feedback, NULL) == -1)

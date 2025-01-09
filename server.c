@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 15:00:51 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/09 16:33:37 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ void	set_string(t_stringholder *strholder)
 	if (ft_atoi_base(strholder->bin, "01") == 0)
 	{
 		if (!ft_strncmp((char *)strholder->str, "exit", 8))
-		{
-			kill(g_strholder->pid_sender, SIGUSR1);
 			exit_p(0);
-		}
 		print_result(&strholder);
+		if (!strholder->str)
+			exit_p(0);
 	}
 	else if (strholder->is_long_set == 0)
 	{
