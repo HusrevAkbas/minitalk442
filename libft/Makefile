@@ -6,7 +6,7 @@
 #    By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 16:30:17 by huakbas           #+#    #+#              #
-#    Updated: 2024/11/29 14:57:56 by huakbas          ###   ########.fr        #
+#    Updated: 2025/01/10 15:42:40 by huakbas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ft_itobase_ul.c ft_printf_handle_int.c ft_printf.c ft_printf_handle_pointer.c\
 ft_printf_handle_string.c ft_printf_set_flagged_str.c get_next_line.c get_next_line_utils.c
 
 BONUSFILES := ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_lstsize_bonus.c\
-ft_lstadd_front_bonus.c ft_lstdelone_bonus.c ft_lstmap_bonus.c\
+ft_lstadd_front_bonus.c ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstnew_bonus.c
 
 OBJECTFILES := $(SRCFILES:.c=.o)

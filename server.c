@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/09 16:33:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/10 16:34:55 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,31 @@ t_stringholder	*g_strholder;
 
 void	exit_p(int code)
 {
-	if (g_strholder->str)
-		free(g_strholder->str);
+	if (g_strholder->str_head)
+		ft_lstclear(&g_strholder->str_head);
+	free(g_strholder->str_head);
 	free(g_strholder);
 	ft_printf("Exit code: %i\n", code);
 	exit(code);
 }
 
-void	set_string(t_stringholder *strholder)
+void	set_string(void)
 {
-	if (ft_atoi_base(strholder->bin, "01") == 0)
-	{
-		if (!ft_strncmp((char *)strholder->str, "exit", 8))
-			exit_p(0);
-		print_result(&strholder);
-		if (!strholder->str)
-			exit_p(0);
-	}
-	else if (strholder->is_long_set == 0)
-	{
-		strholder->is_long = ft_atoi_base(strholder->bin, "01") - 48;
-		if (strholder->is_long == 1)
-			extend_str(&strholder);
-		if (!strholder->str)
-			exit_p(1);
-		strholder->is_long_set = 1;
-	}
+	if (!g_strholder || !g_strholder->str_head || !g_strholder->str_current)
+		exit_p(1);
+	if (ft_atoi_base(g_strholder->bin, "01") == 0)
+		g_strholder->is_done = 1;
 	else
 	{
-		strholder->str[strholder->i_str] = ft_atoi_base(strholder->bin, "01");
-		strholder->i_str++;
-		if (strholder->i_str % BUFF_SIZE == 0)
-			strholder->is_long_set = 0;
+		g_strholder->str_current->content[g_strholder->i_str] = ft_atoi_base(g_strholder->bin, "01");
+		if (g_strholder->str_current->content[g_strholder->i_str] > 255)
+			g_strholder->is_done = 2;
+		g_strholder->i_str++;
 	}
+	if (g_strholder->i_str == 1000)
+		extend_str(&g_strholder);
+	if (!g_strholder->str_current)
+		exit_p(1);
 }
 
 void	handler(int signum, siginfo_t *info, void *data)
@@ -64,7 +56,7 @@ void	handler(int signum, siginfo_t *info, void *data)
 	if (g_strholder->i_bin == 8)
 	{
 		g_strholder->i_bin = 0;
-		set_string(g_strholder);
+		set_string();
 	}
 }
 
@@ -88,10 +80,11 @@ int	main(void)
 		pause();
 		if (g_strholder->is_done == 1)
 		{
+			print_result(&g_strholder);
 			kill(g_strholder->pid_sender, SIGUSR1);
-			g_strholder->is_done = 0;
 		}
+		if (g_strholder->is_done == 2)
+			exit_p(0);
 	}
 	exit_p(0);
-	return (0);
 }

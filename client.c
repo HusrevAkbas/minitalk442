@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/09 16:53:45 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/10 16:18:00 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	char_to_bin(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		usleep(100);
 		if (((c >> i) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		i--;
+		usleep(100);
 	}
 }
 
@@ -44,10 +44,6 @@ void	send_msg(char *str, int pid)
 	i = 0;
 	while (str[i])
 	{
-		if (i % BUFF_SIZE == 0 && (int) ft_strlen(str) >= i + BUFF_SIZE)
-			char_to_bin('1', pid);
-		else if (i % BUFF_SIZE == 0)
-			char_to_bin('0', pid);
 		char_to_bin(str[i], pid);
 		i++;
 	}
@@ -74,6 +70,6 @@ int	main(int argc, char **argv)
 	}
 	pid = ft_atoi(argv[1]);
 	send_msg(argv[2], pid);
-	sleep(5);
+	sleep(3);
 	return (0);
 }
