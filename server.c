@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/10 16:34:55 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/11 15:16:56 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exit_p(int code)
 		ft_lstclear(&g_strholder->str_head);
 	free(g_strholder->str_head);
 	free(g_strholder);
-	ft_printf("Exit code: %i\n", code);
+	ft_printf("Server closed with code: %i\n", code);
 	exit(code);
 }
 
@@ -32,9 +32,8 @@ void	set_string(void)
 		g_strholder->is_done = 1;
 	else
 	{
-		g_strholder->str_current->content[g_strholder->i_str] = ft_atoi_base(g_strholder->bin, "01");
-		if (g_strholder->str_current->content[g_strholder->i_str] > 255)
-			g_strholder->is_done = 2;
+		g_strholder->str_current->content[g_strholder->i_str]
+			= ft_atoi_base(g_strholder->bin, "01");
 		g_strholder->i_str++;
 	}
 	if (g_strholder->i_str == 1000)

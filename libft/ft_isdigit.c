@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:59:04 by huakbas           #+#    #+#             */
-/*   Updated: 2024/09/03 15:59:11 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:13:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,3 @@ int	ft_isdigit(int c)
 	else
 		return (1);
 }
-/*
-#include <stdio.h>
-int	main(int argc, char *argv[])
-{
-	int	r;
-
-	if (argc > 1)
-	{
-		r = ft_str_is_numeric(argv[1]);
-		printf("%d", r);
-	}
-	return (42);
-}*/

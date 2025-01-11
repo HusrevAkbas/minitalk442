@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/10 16:50:58 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/11 15:40:43 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	print_result(t_stringholder **strholder)
 	ft_lstclear(&(*strholder)->str_head->next);
 	ft_bzero((*strholder)->str_head->content, BUFF_SIZE + 1);
 	ft_bzero((*strholder)->bin, 9);
-	(*strholder)->i_bin = 0;
 	(*strholder)->str_current = (*strholder)->str_head;
 }
 
