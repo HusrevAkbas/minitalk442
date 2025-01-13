@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/11 15:16:56 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:25:16 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_string(void)
 			= ft_atoi_base(g_strholder->bin, "01");
 		g_strholder->i_str++;
 	}
-	if (g_strholder->i_str == 1000)
+	if (g_strholder->i_str == BUFF_SIZE)
 		extend_str(&g_strholder);
 	if (!g_strholder->str_current)
 		exit_p(1);
