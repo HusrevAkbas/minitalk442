@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/14 14:38:35 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 17:27:44 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,19 @@ int	check_pid(char *pid)
 			return (-1);
 		i++;
 	}
+	if (i > 10)
+		return (-1);
+	if (i == 10)
+	{
+		if (pid[0] > '2')
+			return (-1);
+		if (pid[0] == '2' && ft_atoi(&pid[1]) > 147483648)
+			return (-1);
+	}
 	pidnum = ft_atoi(pid);
 	if (pidnum <= 0)
 		return (-1);
-	return pidnum;
+	return (pidnum);
 }
 
 int	main(int argc, char **argv)
