@@ -8,9 +8,10 @@ MAX=48
 i=0
 #send word
 echo "sudo"
+pkill $S1 $PID
 while [ $i -lt $MAX ]
 do
-	sleep 0.0000005
+	sleep 0.1
 	if [ ${WORD:i:1} -eq 1 ]
 	then
 		pkill $S1 $PID
@@ -25,7 +26,7 @@ i=0
 echo "exit"
 while [ $i -lt $MAX ]
 do
-	sleep 0.0000005
+	sleep 0.1
 	if [ ${EXIT:i:1} -eq 1 ]
 	then
 		pkill $S1 $PID

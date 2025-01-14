@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/09 17:08:50 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 14:03:50 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,11 @@
 # include <sys/wait.h>
 
 typedef struct sigaction	t_sigaction;
-typedef struct string
-{
-	int				i_bin;
-	int				i_str;
-	int				size;
-	int				pid_sender;
-	unsigned char	*str;
-	char			bin[9];
-	int				is_done;
-	int				is_long;
-	int				is_long_set;
-}	t_stringholder;
 
 void			exit_p(int code);
-void			extend_str(t_stringholder **strholder);
 int				ft_atoi_base(char *nbr, char *base);
-t_stringholder	*init_string(int pid);
 void			print_pid(void);
-void			print_result(t_stringholder **strholder);
+void			print_result(char *bin, int *bits, int *pid);
 void			set_sa(t_sigaction *sa1, sigset_t *set);
 
 #endif
