@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/14 14:20:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 14:38:35 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	handler(int signum, siginfo_t *info, void *data)
 	if (signum == SIGUSR2)
 	{
 		write(1, "Message received by server!", 28);
+		usleep(10);
 		exit(0);
 	}
 	i = bits / 8;
@@ -41,6 +42,24 @@ void	handler(int signum, siginfo_t *info, void *data)
 	bits++;
 }
 
+int	check_pid(char *pid)
+{
+	int	i;
+	int	pidnum;
+
+	i = 0;
+	while (pid[i])
+	{
+		if (!ft_isdigit(pid[i]))
+			return (-1);
+		i++;
+	}
+	pidnum = ft_atoi(pid);
+	if (pidnum <= 0)
+		return (-1);
+	return pidnum;
+}
+
 int	main(int argc, char **argv)
 {
 	int			pid;
@@ -52,14 +71,12 @@ int	main(int argc, char **argv)
 	sigaction(SIGUSR2, &sa_feedback, NULL);
 	if (argc != 3)
 		return (ft_printf("./client <PROCESS ID> <MESSAGE>"));
-	pid = ft_atoi(argv[1]);
+	pid = check_pid(argv[1]);
 	if (pid <= 0)
 		return (ft_printf("./client <PROCESS ID> <MESSAGE>"));
 	g_message = argv[2];
 	kill(pid, SIGUSR1);
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }
