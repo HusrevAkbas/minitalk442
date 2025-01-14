@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/14 17:27:44 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:00:55 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	handler(int signum, siginfo_t *info, void *data)
 	if (signum == SIGUSR2)
 	{
 		write(1, "Message received by server!", 28);
-		usleep(10);
 		exit(0);
 	}
 	i = bits / 8;
@@ -32,6 +31,7 @@ void	handler(int signum, siginfo_t *info, void *data)
 	if (!g_message[i])
 	{
 		kill(info->si_pid, SIGUSR2);
+		usleep(100);
 		if (!g_message[i] && b == 0)
 			exit(0);
 	}
