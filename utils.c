@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/14 19:10:07 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:31:15 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ unsigned char	*set_str(unsigned char *str, char *bin, int *bits, int *pid, int *
 	str[*i] = ft_atoi_base(bin, "01");
 	if (str[*i] == 0)
 	{
+		kill(*pid, SIGUSR2);
+		write(1, str, *i);
+		write(1, "\n", 1);
+		*i = 0;
 		if (!ft_strncmp((char *)str, "exit", 4))
 		{
 			free(str);
 			return (NULL);
 		}
-		write(1, str, *i);
-		write(1, "\n", 1);
-		*i = 0;
 		free(str);
 		str = malloc(BUFF_SIZE + 1);
-		kill(*pid, SIGUSR2);
 		*pid = 0;
 		return (str);
 	}
