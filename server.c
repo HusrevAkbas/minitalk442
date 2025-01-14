@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/09 16:33:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/14 13:37:04 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,35 @@ void	set_string(t_stringholder *strholder)
 
 void	handler(int signum, siginfo_t *info, void *data)
 {
+	static int	bits = 0;
+	static int	pid = 0;
+	static char	bin[9];
+	unsigned char	c;
+
 	(void) data;
-	(void) signum;
-	g_strholder->pid_sender = info->si_pid;
-	if (signum == SIGUSR1)
-		g_strholder->bin[g_strholder->i_bin] = '1';
-	else
-		g_strholder->bin[g_strholder->i_bin] = '0';
-	g_strholder->i_bin++;
-	if (g_strholder->i_bin == 8)
+	if (!pid)
 	{
-		g_strholder->i_bin = 0;
-		set_string(g_strholder);
+		pid = info->si_pid;
+		bits = 0;
+		kill(pid, SIGUSR1);
+		return ;
 	}
+	if (pid != info->si_pid)
+		return ;
+	if (signum == SIGUSR1)
+		bin[bits] = '1';
+	else
+		bin[bits] = '0';
+ft_printf("%c", bin[bits]);
+	bits++;
+	if (bits == 8)
+	{
+		bits = 0;
+		c = ft_atoi_base(bin, "01");
+ft_printf("\n%i\n", ft_atoi_base(bin, "01"));
+		write(1, &c, 1);
+	}
+	kill(pid, SIGUSR1);
 }
 
 int	main(void)
@@ -79,18 +95,11 @@ int	main(void)
 	print_pid();
 	set_sa(&sa_usr1, &set);
 	sa_usr1.sa_sigaction = &handler;
-	if (sigaction(SIGUSR1, &sa_usr1, NULL) == -1)
-		exit_p(3);
-	if (sigaction(SIGUSR2, &sa_usr1, NULL) == -1)
-		exit_p(3);
+	sigaction(SIGUSR1, &sa_usr1, NULL);
+	sigaction(SIGUSR2, &sa_usr1, NULL);
 	while (1)
 	{
-		pause();
-		if (g_strholder->is_done == 1)
-		{
-			kill(g_strholder->pid_sender, SIGUSR1);
-			g_strholder->is_done = 0;
-		}
+		sleep(1);
 	}
 	exit_p(0);
 	return (0);
