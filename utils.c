@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/17 15:28:45 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:05:14 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	set_sa(t_sigaction *sa1, sigset_t *set)
 {
+	if (!sa1 || !set)
+		return ;
 	(*sa1).sa_flags = SA_SIGINFO;
 	sigemptyset(set);
 	sigaddset(set, SIGUSR1);
@@ -25,6 +27,11 @@ unsigned char	*print_result(unsigned char *str, int i, int *bits, int *pid)
 {
 	if (!str)
 		return (NULL);
+	if (!bits || !pid)
+	{
+		free(str);
+		return (NULL);
+	}
 	kill(*pid, SIGUSR2);
 	write(1, str, i);
 	write(1, "\n", 1);

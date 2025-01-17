@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:32 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/17 14:56:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 15:59:25 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	check_pid(char *pid)
 	int	i;
 	int	pidnum;
 
+	if (!pid)
+		return (-1);
 	i = 0;
 	while (pid[i])
 	{

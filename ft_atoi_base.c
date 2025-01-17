@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:51:33 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/31 13:43:52 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:02:14 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	char_in_str(char *str, char c)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 	{
@@ -31,6 +33,8 @@ static int	check_chars(char *nbr, int *p)
 	int	i;
 	int	minus;
 
+	if (!nbr || !p)
+		return (0);
 	minus = 1;
 	i = 0;
 	while (nbr[i] == ' ' || (nbr[i] > 8 && nbr[i] && nbr[i] < 14))
@@ -56,6 +60,8 @@ int	ft_atoi_base(char *nbr, char *base)
 	int	i;
 	int	is_n;
 
+	if (!nbr || !base)
+		return (0);
 	i = 0;
 	res = 0;
 	num_len = char_in_str(nbr, '~');
