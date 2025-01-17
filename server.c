@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/17 14:48:08 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 15:10:17 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handler(int signum, siginfo_t *info, void *data)
 	static char	bin[9];
 
 	(void) data;
+	//(void) info;
 	if (!pid)
 	{
 		pid = info->si_pid;
