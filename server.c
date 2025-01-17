@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:22 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/14 19:10:11 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 14:44:34 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ void	handler(int signum, siginfo_t *info, void *data)
 	static int	bits = 0;
 	static int	pid = 0;
 	static char	bin[9];
-	static int	i = 0;
 
 	(void) data;
-	if (!pid)
-	{
-		pid = info->si_pid;
-		bits = 0;
-		kill(pid, SIGUSR1);
-		return ;
-	}
-	if (pid != info->si_pid)
-		return ;
+	(void) info;
+	// if (!pid)
+	// {
+	// 	pid = info->si_pid;
+	// 	bits = 0;
+	// 	kill(pid, SIGUSR1);
+	// 	return ;
+	// }
+	// if (pid != info->si_pid)
+	// 	return ;
 	if (signum == SIGUSR1)
-		bin[bits] = '1';
+		bin[bits % 8] = '1';
 	else
-		bin[bits] = '0';
+		bin[bits % 8] = '0';
 	bits++;
-	if (bits == 8)
-		g_str = set_str(g_str, bin, &bits, &pid, &i);
+	if (bits % 8 == 0)
+		g_str = set_str(g_str, bin, &bits, &pid);
 	if (!g_str)
 		exit(0);
 	if (pid)
