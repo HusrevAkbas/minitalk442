@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:25:38 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/17 15:15:38 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 15:28:45 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	set_sa(t_sigaction *sa1, sigset_t *set)
 
 unsigned char	*print_result(unsigned char *str, int i, int *bits, int *pid)
 {
+	if (!str)
+		return (NULL);
 	kill(*pid, SIGUSR2);
 	write(1, str, i);
 	write(1, "\n", 1);
@@ -41,7 +43,9 @@ unsigned char	*print_result(unsigned char *str, int i, int *bits, int *pid)
 unsigned char	*extend(unsigned char *str, int i)
 {
 	unsigned char	*new;
-	
+
+	if (!str)
+		return (NULL);
 	new = ft_calloc(i + BUFF_SIZE + 1, 1);
 	if (!new)
 	{
@@ -55,7 +59,7 @@ unsigned char	*extend(unsigned char *str, int i)
 
 unsigned char	*set_str(unsigned char *str, char *bin, int *bits, int *pid)
 {
-	int				i;
+	int	i;
 
 	if (!str)
 		return (NULL);
@@ -67,27 +71,16 @@ unsigned char	*set_str(unsigned char *str, char *bin, int *bits, int *pid)
 	i = *bits / 8 - 1;
 	str[i] = ft_atoi_base(bin, "01");
 	if (str[i] == 0)
-		str = print_result(str, i, bits, pid);
+		return (print_result(str, i, bits, pid));
 	if (i != 0 && i % BUFF_SIZE == 0)
-	{
 		return (extend(str, i));
-		// new = ft_calloc(i + BUFF_SIZE + 1, 1);
-		// if (!new)
-		// {
-		// 	free(str);
-		// 	return (NULL);
-		// }
-		// ft_memmove(new, str, i + 1);
-		// free(str);
-		// return (new);
-	}
 	return (str);
 }
 
 void	print_pid(void)
 {
-	int			pid;
-	char		*pidchar;
+	int		pid;
+	char	*pidchar;
 
 	pid = getpid();
 	pidchar = ft_itoa(pid);
