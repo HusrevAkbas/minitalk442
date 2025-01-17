@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:44:56 by huakbas           #+#    #+#             */
-/*   Updated: 2025/01/17 14:46:32 by huakbas          ###   ########.fr       */
+/*   Updated: 2025/01/17 14:51:33 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINITALK_H
 # define _GNU_SOURCE
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 2
+#  define BUFF_SIZE 1000
 # endif //BUFF_SIZE
 # include "libft/libft.h"
 # include <signal.h>
@@ -24,9 +24,9 @@
 
 typedef struct sigaction	t_sigaction;
 
-int		ft_atoi_base(char *nbr, char *base);
-void	print_pid(void);
+int				ft_atoi_base(char *nbr, char *base);
+void			print_pid(void);
 unsigned char	*set_str(unsigned char *str, char *bin, int *bits, int *pid);
-void	set_sa(t_sigaction *sa1, sigset_t *set);
+void			set_sa(t_sigaction *sa1, sigset_t *set);
 
 #endif
